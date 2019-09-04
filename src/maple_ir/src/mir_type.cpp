@@ -653,7 +653,7 @@ size_t MIRInterfaceType::GetSize() const {
   return size;
 }
 
-static void DumpStaticValue(MIREncodedArray staticValue, int indent) {
+static void DumpStaticValue(const MIREncodedArray &staticValue, int indent) {
   if (staticValue.empty()) {
     return;
   }
@@ -662,7 +662,7 @@ static void DumpStaticValue(MIREncodedArray staticValue, int indent) {
   LogInfo::MapleLogger() << "@staticvalue";
   constexpr uint32 typeLen = 5;
   constexpr uint32 typeMask = 0x1f;
-  for (EncodedValue value : staticValue) {
+  for (const auto &value : staticValue) {
     LogInfo::MapleLogger() << " [";
     uint8 valueArg = static_cast<uint32>(value.encodedValue[0]) >> typeLen;
     uint8 valueType = static_cast<uint32>(value.encodedValue[0]) & typeMask;
@@ -678,7 +678,6 @@ static void DumpStaticValue(MIREncodedArray staticValue, int indent) {
     }
     LogInfo::MapleLogger() << "]";
   }
-  return;
 }
 
 static void DumpFields(FieldVector fields, int indent, bool otherFields = false) {
@@ -708,10 +707,10 @@ static void DumpFields(FieldVector fields, int indent, bool otherFields = false)
   return;
 }
 
-static void DumpFieldsAsCxx(FieldVector fields, int indent) {
+static void DumpFieldsAsCxx(const FieldVector &fields, int indent) {
   for (auto &f : fields) {
     PrintIndentation(indent);
-    FieldAttrs &fa = f.second.second;
+    const FieldAttrs &fa = f.second.second;
     if (fa.GetAttr(FLDATTR_static)) {
       LogInfo::MapleLogger() << "// ";
     }

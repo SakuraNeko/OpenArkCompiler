@@ -75,7 +75,7 @@ class BinaryMplExport {
   void Init();
   void OutputConst(MIRConst *c);
   void OutputConstBase(const MIRConst *c);
-  void OutputStr(GStrIdx gstr);
+  void OutputStr(const GStrIdx &gstr);
   void OutputUsrStr(UStrIdx ustr);
   void OutputTypePairs(MIRInstantVectorType *typ);
   void OutputTypeBase(const MIRType *type);
@@ -105,7 +105,7 @@ class BinaryMplExport {
   void WriteNum(int64 x);
   void WriteAsciiStr(const std::string &str);
   void Fixup(uint64 i, int32 x);
-  void CreateFile(const std::string &modid);
+  void DumpBuf(const std::string &modid);
   void AppendAt(const std::string &fname, int32 ipaIdx);
   const MIRModule &GetMIRModule() const {
     return mod;

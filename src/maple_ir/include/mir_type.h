@@ -577,7 +577,7 @@ class MIRArrayType : public MIRType {
     sizeArray[idx] = value;
   }
 
-  bool EqualTo(const MIRType &type) const;
+  bool EqualTo(const MIRType &type) const override;
   MIRArrayType &operator=(const MIRArrayType &p) = default;
   MIRArrayType() : MIRType(kTypeArray, PTY_agg), eTyIdx(0), dim(0), sizeArray{ 0 } {}
 
@@ -599,8 +599,8 @@ class MIRArrayType : public MIRType {
     }
   }
 
-  explicit MIRArrayType(const GStrIdx &strIdx)
-      : MIRType(kTypeArray, PTY_agg, strIdx), eTyIdx(TyIdx()), dim(0), sizeArray{ 0 } {}
+  explicit MIRArrayType(const GStrIdx &strIdx) : MIRType(kTypeArray, PTY_agg, strIdx), dim(0), sizeArray{ 0 } {}
+
   uint16 GetDim() const {
     return dim;
   }
@@ -611,16 +611,16 @@ class MIRArrayType : public MIRType {
 
   MIRType *GetElemType() const;
 
-  MIRType *CopyMIRTypeNode() const {
+  MIRType *CopyMIRTypeNode() const override {
     return new MIRArrayType(*this);
   }
 
-  bool HasTypeParam() const {
+  bool HasTypeParam() const override {
     return GetElemType()->HasTypeParam();
   }
 
-  void Dump(int indent, bool dontUseName = false) const;
-  size_t GetSize() const {
+  void Dump(int indent, bool dontUseName) const override;
+  size_t GetSize() const override {
     size_t elemSize = GetElemType()->GetSize();
     if (elemSize == 0) {
       return 0;
@@ -633,7 +633,7 @@ class MIRArrayType : public MIRType {
     return elemSize * numElems;
   }
 
-  size_t GetHashIndex() const {
+  size_t GetHashIndex() const override {
     constexpr uint8 kIdxShift = 2;
     size_t hidx = (eTyIdx.GetIdx() << kIdxShift) + (typeKind << kShiftNumOfTypeKind);
     for (size_t i = 0; i < dim; i++) {

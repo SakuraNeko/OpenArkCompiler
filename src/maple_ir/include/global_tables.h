@@ -81,6 +81,8 @@ class TypeTable {
 
  public:
   TypeTable();
+  TypeTable(const TypeTable&) = delete;
+  TypeTable &operator=(const TypeTable&) = delete;
   ~TypeTable();
   MIRType *CreateMirType(uint32 ti) const;
   void PutToHashTable(MIRType *mirtype);
@@ -458,6 +460,8 @@ class MIRSymbol;
 class GSymbolTable {
  public:
   GSymbolTable();
+  GSymbolTable(const GSymbolTable&) = delete;
+  GSymbolTable &operator=(const GSymbolTable&) = delete;
   ~GSymbolTable();
 
   MIRModule *GetModule() {

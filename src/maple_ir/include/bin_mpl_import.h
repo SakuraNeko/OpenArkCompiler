@@ -74,7 +74,7 @@ class BinaryMplImport {
   void ReadTypeField();
   void Jump2NextField();
   void Reset();
-  MIRSymbol *GetOrCreateSymbol(TyIdx tyIdx, GStrIdx strIdx, MIRSymKind mclass, MIRStorageClass sclass,
+  MIRSymbol *GetOrCreateSymbol(const TyIdx &tyIdx, const GStrIdx &strIdx, MIRSymKind mclass, MIRStorageClass sclass,
                                MIRFunction *func, uint8 scpID);
   MIRType *InsertInTypeTables(MIRType *ptype);
   void InsertInHashTable(MIRType *ptype);

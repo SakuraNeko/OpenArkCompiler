@@ -297,8 +297,9 @@ bool GSymbolTable::AddToStringSymbolMap(const MIRSymbol *st) {
 }
 
 bool GSymbolTable::RemoveFromStringSymbolMap(const MIRSymbol *st) {
-  if (strIdxToStIdxMap.find(st->GetNameStrIdx()) != strIdxToStIdxMap.end()) {
-    strIdxToStIdxMap.erase(st->GetNameStrIdx());
+  auto it = strIdxToStIdxMap.find(st->GetNameStrIdx());
+  if (it != strIdxToStIdxMap.end()) {
+    strIdxToStIdxMap.erase(it);
     return true;
   }
   return false;

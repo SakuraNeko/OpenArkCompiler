@@ -73,9 +73,8 @@ static std::string GetKind(PragmaValueType kind) {
 //  2: Lfoofoofoofoo;xx  3: Lfoofoofoofoo<
 //     |             |      |            |
 //     start         end    start        end
-static void GetTypeStr(const std::string str, uint32 &start, uint32 &end, uint32 &status) {
+static void GetTypeStr(const std::string &str, uint32 &start, uint32 &end, uint32 &status) {
   uint32 i = start;
-  std::string result = str;
   status = 0;
   while (str[i] == '[') {
     i++;
@@ -130,7 +129,6 @@ static void GetTypeStr(const std::string str, uint32 &start, uint32 &end, uint32
       end = i;
       break;
   }
-  return;
 }
 
 MIRPragmaElement *MIRPragma::GetPragmaElemFromSignature(const std::string &signature) {

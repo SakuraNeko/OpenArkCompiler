@@ -18,7 +18,6 @@
 #include "types_def.h"
 
 namespace maple {
-class MIRModule;
 extern void PrintIndentation(int32 indent);
 void PrintString(const std::string &str);
 }  // namespace maple

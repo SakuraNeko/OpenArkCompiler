@@ -198,7 +198,6 @@ void RCLowering::HandleAssignMeStmtRHS(MeStmt *stmt) {
 }
 
 void RCLowering::HandleCallAssignedMeStmt(MeStmt *stmt, MeExpr *pendingDec) {
-  ASSERT(stmt->GetMustDefList() != nullptr, "null ptr check");
   MapleVector<MustDefMeNode> *mustDefs = stmt->GetMustDefList();
   ASSERT(mustDefs != nullptr, "null ptr check");
 

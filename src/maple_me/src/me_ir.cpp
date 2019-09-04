@@ -1102,6 +1102,7 @@ BB *VarMeExpr::DefByBB() {
     }
     default:
       ASSERT(false, "var define unknown");
+      return nullptr;
   }
 }
 
